@@ -11,6 +11,14 @@
 <body>
     <c:import url="header.html"/>
 
+<%--    <form action="/show-recipe" method="get">--%>
+<%--        <label id="prefUser">Get pref-user</label>--%>
+<%--        <input type="search" id="prefUser" name="prefUser">--%>
+<%--        <label id="prefRecipe">Get pref-recipe</label>--%>
+<%--        <input type="search" id="prefRecipe" name="prefRecipe">--%>
+<%--        <input type="submit" value="search">--%>
+<%--    </form>--%>
+
     <c:forEach var="recipe" items="${requestScope.recipes}">
         <div class="recipe">
             <div class="title">

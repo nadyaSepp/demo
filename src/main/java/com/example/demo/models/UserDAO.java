@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class UserDAO {
     private static final UserDAO instance = new UserDAO();
-    private static String url = "jdbc:sqlite:D:\\java projects\\demo\\database.db";
+    private static String url = "jdbc:sqlite:D:\\shcool_Java\\4_Java_lessons\\JAVA_3_Spring\\урок_7_2\\demo\\database.db";
 
     private UserDAO() {
         try {

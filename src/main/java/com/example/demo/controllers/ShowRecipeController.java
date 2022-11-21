@@ -13,11 +13,23 @@ import java.util.List;
 public class ShowRecipeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Пользователь обратился к адресу /create-recipe, перенаправляем его на страницу create_recipe.jsp
-        //Без смены url
-        List<Recipe> recipeList = RecipeDAO.getInstance().allRecipes();
-        request.setAttribute("recipes", recipeList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("all_recipes.jsp");
-        dispatcher.forward(request, response);
+        String user = request.getParameter("prefUser");
+        String recipe = request.getParameter("prefRecipe");
+        System.out.println("get: " + user + " " + recipe);
+        if (!user.isEmpty() || !recipe.isEmpty()) {
+            List<Recipe> recipeList = RecipeDAO.getInstance().searchPrefRecipe(recipe,user);
+            request.setAttribute("recipes", recipeList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("all_recipes.jsp");
+            dispatcher.forward(request, response);
+        }
+        else {
+            //Пользователь обратился к адресу /all_recipes, перенаправляем его на страницу create_recipe.jsp
+            //Без смены url
+            List<Recipe> recipeList = RecipeDAO.getInstance().allRecipes();
+            request.setAttribute("recipes", recipeList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("all_recipes.jsp");
+            dispatcher.forward(request, response);
+        }
+
     }
 }
